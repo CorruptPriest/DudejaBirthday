@@ -475,45 +475,29 @@ footer {
     scroll-snap-align: end;
 }
 
-.yellow-marquee {
+.simple-footer {
     background: #C8A005;
     color: #000;
     padding: 1rem 0;
-}
-
-.marquee-content {
-    display: flex;
-    white-space: nowrap;
-}
-
-.marquee-content span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: marquee 20s linear infinite;
+    text-align: center;
     font-family: var(--font-body);
-    font-size: 1rem;
     font-weight: bold;
     text-transform: uppercase;
-}
-
-@keyframes marquee {
-    0% {
-        transform: translate(0, 0);
-    }
-
-    100% {
-        transform: translate(-100%, 0);
-    }
+    width: 100%;
+    font-size: 1rem;
 }
 
 .instagram-link {
     color: #000 !important;
     text-decoration: none;
     border-bottom: 1px solid #000;
-    display: inline-block;
-    position: relative;
-    z-index: 5;
     font-weight: bold;
+    display: inline-block;
+    transition: opacity 0.3s;
+}
+
+.instagram-link:hover {
+    opacity: 0.7;
 }
 
 @media (max-width: 768px) {
