@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Intersection Observer for fade-in animations
     const observerOptions = {
         threshold: 0.1
     };
@@ -23,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Add animation classes to elements
     document.querySelectorAll('.glass-card').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -31,22 +28,20 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // --- Marquee Logic ---
     const invitedPeople = [
-        { name: "Shreya", quote: "Can't wait to celebrate!" },
-        { name: "Suhani", quote: "Let's make it epic!" },
-        { name: "Mukta", quote: "Happy Birthday Aadish!" },
-        { name: "Naga", quote: "Party time!" },
-        { name: "Kavin", quote: "The Legend himself." },
-        { name: "Sparsh", quote: "Cheers to you!" },
-        { name: "Aarya", quote: "See you there!" },
-        { name: "Tanisi", quote: "You already know", special: true },
-        { name: "Karthick", quote: "Let's rock!" }
+        { name: "Naga", quote: "Equal parts presence and absence. Somehow central regardless.", image: "assets/naga.png" },
+        { name: "Shreya", quote: "Chaos with a calendar. Frequently unavailable. Permanently worth the wait.", image: "assets/shreya.png" },
+        { name: "Sanath", quote: "Two days of open warfare. Mutual respect. Questionable outcome.", image: "assets/sanath.png" },
+        { name: "Suhani", quote: "Emotionally competent to an unsettling degree. Numerically questionable. Suspiciously kind. We keep her.", image: "assets/suhani.png" },
+        { name: "Kavin", quote: "Practicing Marxist. Full-time menace. Will still show up when it counts.", image: "assets/kavin.png" },
+        { name: "Sparsh", quote: "Arrives on his own terms. Leaves on better ones.", image: "assets/sparsh.png" },
+        { name: "Mukta", quote: "Will roast you gently, help you anyway, and never let you forget either.", image: "assets/mukta.png" },
+        { name: "Karthik", quote: "Same factory. Different batch number. Knows everything.", image: "assets/kartick.png" },
+        { name: "Tanisi", quote: "You already know", special: true, image: "assets/Tanisi.png" }
     ];
 
     const marqueeRow1 = document.getElementById('marquee-row-1');
 
-    // Modal Logic
     const modal = document.getElementById('widget-modal');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const modalImg = document.getElementById('modal-img');
@@ -54,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalDesc = document.getElementById('modal-desc');
 
     function openModal(person) {
-        modalImg.src = `https://api.dicebear.com/7.x/notionists/svg?seed=${person.name.replace(' ', '')}&backgroundColor=transparent`;
+        modalImg.src = person.image;
         modalTitle.innerText = person.name;
         modalDesc.innerText = person.quote;
         modal.classList.add('active');
@@ -68,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeModal() {
         modal.classList.remove('active');
-        // Delay removal of special mode to match transition
         setTimeout(() => {
             modal.classList.remove('tanisi-mode');
         }, 300);
@@ -86,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeModal();
@@ -97,14 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'widget-card';
 
-        // Add click listener to open modal
         card.addEventListener('click', () => {
             openModal(person);
         });
 
         if (person.special) {
             card.classList.add('special-card');
-            // Add hearts decoration
             const hearts = document.createElement('div');
             hearts.className = 'hearts-decoration';
             hearts.innerHTML = '🤍 🤍 🤍';
@@ -115,13 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
         imgContainer.className = 'widget-image-container';
 
         const img = document.createElement('img');
-        // Use DiceBear for consistent, premium avatars
-        img.src = `https://api.dicebear.com/7.x/notionists/svg?seed=${person.name.replace(' ', '')}&backgroundColor=transparent`;
+        img.src = person.image;
         img.alt = person.name;
         img.style.width = '100%';
         img.style.height = '100%';
-        img.style.objectFit = 'contain';
-        img.style.padding = '1rem';
+        img.style.objectFit = 'cover';
 
         imgContainer.appendChild(img);
 
@@ -144,10 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (marqueeRow1) {
-        // Populate Row 1 with ALL people
-        // Duplicate for seamless loop effect
-        // We need enough items to fill the screen width + buffer for the animation to look smooth
-        // Let's duplicate the list 4 times to be safe for wide screens
         const fullList = [...invitedPeople, ...invitedPeople, ...invitedPeople, ...invitedPeople];
 
         fullList.forEach((person, i) => {

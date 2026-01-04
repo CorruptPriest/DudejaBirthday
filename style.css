@@ -14,7 +14,6 @@
 
 :root {
     --bg-color: #e0e0e0;
-    /* Glazed off-white */
     --text-color: #0e0e0e;
     --accent-color: #D71921;
     --glass-bg: rgba(255, 255, 255, 0.25);
@@ -33,7 +32,6 @@
     padding: 0;
     box-sizing: border-box;
     cursor: crosshair;
-    /* Custom cursor feel */
 }
 
 html {
@@ -70,10 +68,10 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(#000 1px, transparent 1px);
-    background-size: 30px 30px;
+    background-image: radial-gradient(#000 2px, transparent 2px);
+    background-size: 40px 40px;
     z-index: -1;
-    opacity: 0.1;
+    opacity: 0.15;
     pointer-events: none;
 }
 
@@ -91,7 +89,6 @@ h3,
     color: var(--accent-color);
 }
 
-/* Glass Effect */
 .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
@@ -102,7 +99,6 @@ h3,
     padding: 2rem;
 }
 
-/* Topbar */
 .topbar {
     position: fixed;
     top: 0;
@@ -138,7 +134,6 @@ h3,
     opacity: 1;
 }
 
-/* Sections */
 section {
     min-height: 100vh;
     padding: 6rem 2rem 2rem;
@@ -171,7 +166,6 @@ section {
     opacity: 0.2;
 }
 
-/* Hero */
 .hero-section {
     align-items: center;
     text-align: center;
@@ -199,7 +193,6 @@ section {
     opacity: 0.6;
 }
 
-/* Invite Content Styles */
 .invite-content {
     margin: 2rem 0;
     max-width: 600px;
@@ -237,7 +230,6 @@ section {
     margin-bottom: 2rem;
     opacity: 0.8;
     text-transform: none;
-    /* Keep mixed case for the witty text */
 }
 
 .invite-outro {
@@ -277,7 +269,6 @@ section {
     }
 }
 
-/* Content Cards (Why & Details) */
 .content-card {
     max-width: 800px;
     margin: 0 auto;
@@ -319,10 +310,9 @@ section {
     color: var(--text-color);
 }
 
-/* Details Grid */
 .details-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-bottom: 3rem;
     text-align: left;
@@ -345,6 +335,23 @@ section {
     margin-top: 0.2rem;
 }
 
+.map-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.map-link:hover {
+    opacity: 1;
+}
+
 .arrival-note {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 2rem;
@@ -352,7 +359,6 @@ section {
     opacity: 0.8;
 }
 
-/* Marquee Section (Invited People) */
 .marquee-wrapper {
     display: flex;
     flex-direction: column;
@@ -401,7 +407,6 @@ section {
     }
 }
 
-/* Widget Card (Invited Person) */
 .widget-card {
     min-width: 250px;
     max-width: 250px;
@@ -462,19 +467,16 @@ section {
     opacity: 0.7;
 }
 
-/* Footer Marquee */
 footer {
     padding: 0;
     border-top: 1px solid var(--glass-border);
     background: var(--accent-color);
-    /* Yellow/Red as per request, user said yellow marquee but accent is red. I'll use yellow for footer as requested */
     overflow: hidden;
     scroll-snap-align: end;
 }
 
 .yellow-marquee {
     background: #C8A005;
-    /* Yellow from Widgets */
     color: #000;
     padding: 1rem 0;
 }
@@ -505,12 +507,15 @@ footer {
 }
 
 .instagram-link {
-    color: #000;
+    color: #000 !important;
     text-decoration: none;
     border-bottom: 1px solid #000;
+    display: inline-block;
+    position: relative;
+    z-index: 5;
+    font-weight: bold;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .hero-section h1 {
         font-size: 3rem;
@@ -539,9 +544,17 @@ footer {
         max-width: 200px;
         height: 280px;
     }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-image-wrapper {
+        height: 300px;
+        max-width: 100%;
+    }
 }
 
-/* Dress Code & Social Styles */
 .suggestions-box {
     background: rgba(255, 255, 255, 0.05);
     padding: 1.5rem;
@@ -597,7 +610,6 @@ footer {
     }
 }
 
-/* Special Card Styling (Tanisi) */
 .special-card {
     border: 1px solid rgba(255, 255, 255, 0.6);
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
@@ -628,7 +640,6 @@ footer {
     }
 }
 
-/* Widget Modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -658,7 +669,6 @@ footer {
     border-radius: 30px;
     width: 90%;
     max-width: 600px;
-    /* Smaller max-width for person card */
     max-height: 90vh;
     position: relative;
     transform: scale(0.9);
@@ -708,9 +718,11 @@ footer {
 }
 
 .modal-image-wrapper {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 60vh;
+    border-radius: 20px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid var(--glass-border);
@@ -720,9 +732,12 @@ footer {
 }
 
 .modal-image-wrapper img {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 60vh;
     object-fit: contain;
+    display: block;
 }
 
 .modal-details h2 {
@@ -737,7 +752,6 @@ footer {
     opacity: 0.8;
 }
 
-/* Tanisi Special Modal Background */
 .modal-overlay.tanisi-mode::before {
     content: "";
     position: absolute;
@@ -763,7 +777,6 @@ footer {
     }
 }
 
-/* More opaque modal for Tanisi mode to hide hearts behind text */
 .modal-overlay.tanisi-mode .modal-content {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(40px);
